@@ -23,12 +23,12 @@
         <div class="dropdown-menu dropdown-menu-right">
           <div class="dropdown-title">Logged in {{ auth()->user()->created_at->diffForHumans() }}</div>
           <a href="{{route('profile.edit')}}" class="dropdown-item has-icon">
-            <i class="far fa-user"></i> Profile
+            <i class="far fa-user"></i>Profile
           </a>
           <a class="dropdown-item" href="{{ route('logout') }}"
           onclick="event.preventDefault();
                     document.getElementById('logout-form').submit();">
-           <i class="fas fa-sign-out-alt"></i> Logout
+           <i class="fas fa-sign-out-alt"></i>Logout
        </a>
        
        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
