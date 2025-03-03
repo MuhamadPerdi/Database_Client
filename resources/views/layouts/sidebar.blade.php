@@ -10,7 +10,7 @@
         <li class="menu-header">Daftar Website</li>
         <li class="dropdown">
           <a href="{{url('/')}}" class="nav-link"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a>
-          <a href="{{url('/configurasi')}}" class="nav-link"><i class="fas fa-cog"></i><span>Configurasi</span></a>
+          <a href="{{url('/configurasi')}}" class="nav-link"><i class="fas fa-cog"></i><span>Konfigurasi</span></a>
           @can('client')
           <a href="{{url('/clients')}}" class="nav-link"><i class="fas fa-users"></i><span>Client</span></a>
           @endcan
@@ -48,9 +48,9 @@
             @can('fitur')
             <li><a class="nav-link" href="{{route('fitur.index')}}">Fitur</a></li>
             @endcan
-            @can('useradmin')
+            {{-- @can('useradmin')
             <li><a class="nav-link" href="{{route('history.index')}}">Histori Crud</a></li>
-            @endcan
+            @endcan --}}
           </ul>
           @endif
         </li>

@@ -24,7 +24,7 @@
       @endif
       <div class="card-body">
           <div style="float: left">
-              <h6 class="card-title">Monitoring</h6>
+              <h6 class="card-title">Client</h6>
           </div>
         
           <div style="float: right;">
@@ -77,12 +77,12 @@
                     <td class="align-middle"> 
                       @if($client->status->status == 'Belum Selesai')
                       <span class="badge badge-pill badge-danger ">{{ $client->status->status }}</span>
-                  @elseif($client->status->status == 'Selesai')
-                  <span class="badge badge-pill badge-success ">{{ $client->status->status }}</span>
-                  @elseif($client->status->status == 'Progress')
-                  <span class="badge badge-pill badge-warning ">{{ $client->status->status }}</span>
-                  @endif
-              </td>
+                      @elseif($client->status->status == 'Selesai')
+                      <span class="badge badge-pill badge-success ">{{ $client->status->status }}</span>
+                      @elseif($client->status->status == 'Progress')
+                      <span class="badge badge-pill badge-warning ">{{ $client->status->status }}</span>
+                      @endif
+                    </td>
                     <td class="align-middle">
                         <a href="{{ route('clients.edit', $client->id) }}" class="btn btn-warning">
                             <i class="fas fa-edit"></i> Edit
@@ -90,12 +90,57 @@
                         <button onclick="confirmDelete('{{ route('clients.destroy', $client->id) }}')" class="btn btn-danger">
                             <i class="fas fa-trash-alt"></i> Hapus
                         </button>
+                        <script>
+                          function confirmDelete(route) {
+                            Swal.fire({
+                                title: 'Apakah Anda yakin?',
+                                text: "Anda tidak akan bisa mengembalikan data ini!",
+                                icon: 'warning',
+                                showCancelButton: true,
+                                confirmButtonColor: '#3085d6',
+                                cancelButtonColor: '#d33',
+                                confirmButtonText: 'Ya, hapus!',
+                                cancelButtonText: 'Batal'
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    Swal.fire({
+                                        title: 'Memproses...',
+                                        text: 'Silakan tunggu sementara kami memproses permintaan Anda.',
+                                        icon: 'info',
+                                        allowOutsideClick: false,
+                                        showConfirmButton: false,
+                                    });
+                                    Swal.showLoading();
+                                    axios.post(route, {
+                                        _method: 'DELETE',
+                                        _token: document.querySelector('meta[name="csrf-token"]').getAttribute('content') 
+                                    }).then(response => {
+                                        Swal.fire({
+                                            title: 'Berhasil!',
+                                            text: 'Data berhasil dihapus.',
+                                            icon: 'success',
+                                            timer: 2000,
+                                            showConfirmButton: false
+                                        }).then(() => {
+                                            location.reload();
+                                        });
+                                    }).catch(error => {
+                                        Swal.fire({
+                                            title: 'Gagal!',
+                                            text: 'Terjadi kesalahan saat menghapus data.',
+                                            icon: 'error',
+                                            confirmButtonText: 'OK'
+                                        });
+                                    });
+                                }
+                            });
+                        }
+                        </script>
                     </td>
                 </tr>
-            @endforeach
-            @else
-            
-      @endif
+                @endforeach
+                @else
+                @endif
               </tbody>
             </table>
           </div>

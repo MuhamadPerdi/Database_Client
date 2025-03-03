@@ -21,7 +21,6 @@
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
-                        
                         <div class="form-group col-md-4">
                             <label for="jenis_id">Jenis:</label>
                             <select id="jenis_id" name="jenis_id" class="form-control" required>
@@ -36,7 +35,6 @@
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
-
                         <div class="form-group col-md-4">
                             <label for="tanggal">Tanggal:</label>
                             <input type="date" name="tanggal" id="tanggal" class="form-control" value="{{ old('tanggal') }}" required>
@@ -44,7 +42,6 @@
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
-
                         <div class="form-group col-md-4">
                             <label for="status_id">Status:</label>
                             <select id="status_id" name="status_id" class="form-control" required>
@@ -59,7 +56,6 @@
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
-
                         <div class="form-group col-md-4">
                             <label for="no_telp">Nomor Telpon:</label>
                             <input type="number" name="no_telp" id="no_telp" class="form-control" value="{{ old('no_telp') }}" required>
@@ -67,7 +63,6 @@
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
-
                         <div class="form-group col-md-4">
                             <label for="sumber">Sumber:</label>
                             <input type="text" name="sumber" id="sumber" class="form-control" value="{{ old('sumber') }}" required>
@@ -75,7 +70,6 @@
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
-                        
                         <div class="form-group col-md-12">
                             <label for="kebutuhan">Kebutuhan:</label>
                             <textarea name="kebutuhan" id="kebutuhan" class="form-control" required>{{ old('kebutuhan') }}</textarea>
@@ -83,7 +77,6 @@
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
-
                         <div class="form-group col-md-12">
                             <label for="alamat">Alamat:</label>
                             <textarea name="alamat" id="alamat" class="form-control" required>{{ old('alamat') }}</textarea>
@@ -91,8 +84,6 @@
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
-
-
                         <div class="form-group col-md-12">
                             <label for="keterangan">Keterangan:</label>
                             <textarea name="keterangan" id="keterangan" class="form-control" required>{{ old('keterangan') }}</textarea>
@@ -100,8 +91,6 @@
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
-
-                        
                     </div>
                         <button type="submit"  class="btn btn-primary">Create</button>
                     </form>

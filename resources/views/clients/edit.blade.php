@@ -14,9 +14,7 @@
                     <form class="_form" action="{{ route('clients.update', $client->id) }}" method="POST">
                         @csrf
                         @method('PUT')
-
                         <div class="row">
-                        
                         <div class="form-group col-md-4">
                             <label for="name">Nama Client:</label>
                             <input type="text" name="name" id="name" class="form-control" value="{{ old('name', $client->name) }}" required>
@@ -24,7 +22,6 @@
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
-
                         <div class="form-group col-md-4">
                             <label for="jenis_id">Jenis:</label>
                             <select id="jenis_id" name="jenis_id" class="form-control" required>
@@ -39,7 +36,6 @@
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
-
                         <div class="form-group col-md-4">
                             <label for="tanggal">Tanggal:</label>
                             <input type="date" name="tanggal" id="tanggal" class="form-control" value="{{ old('tanggal', $client->tanggal->format('Y-m-d')) }}" required>
@@ -47,8 +43,6 @@
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
-
-                        
                         <div class="form-group col-md-4">
                             <label for="status_id">Status:</label>
                             <select id="status_id" name="status_id" class="form-control" required>
@@ -70,7 +64,6 @@
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
-
                         <div class="form-group col-md-4">
                             <label for="sumber">Sumber:</label>
                             <input type="text" name="sumber" id="sumber" class="form-control" value="{{ old('sumber', $client->sumber) }}" required>
@@ -78,8 +71,6 @@
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
-
-
                         <div class="form-group col-md-12">
                             <label for="kebutuhan">Kebutuhan:</label>
                             <textarea name="kebutuhan" id="kebutuhan" class="form-control" required>{{ old('kebutuhan', $client->kebutuhan) }}</textarea>
@@ -87,8 +78,6 @@
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
-
-
                         <div class="form-group col-md-12">
                             <label for="alamat">Alamat:</label>
                             <textarea name="alamat" id="alamat" class="form-control" required>{{ old('alamat', $client->alamat) }}</textarea>
@@ -96,7 +85,6 @@
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
-
                         <div class="form-group col-md-12">
                             <label for="keterangan">Keterangan:</label>
                             <textarea name="keterangan" id="keterangan" class="form-control" required>{{ old('keterangan', $client->keterangan) }}</textarea>

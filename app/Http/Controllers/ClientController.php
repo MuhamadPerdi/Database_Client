@@ -54,10 +54,10 @@ class ClientController extends Controller
 
         $request->validate([
             'name' => 'required|string|max:255',
-            'tanggal' => 'required|date|date_format:Y-m-d', // Validasi tanggal
+            'tanggal' => 'required|date|date_format:Y-m-d', 
             'jenis_id' => ['required', Rule::in($allowedJenis)],
             'kebutuhan' => 'required|string',
-            'no_telp' => 'required|string|max:15', // Pastikan panjang maksimal sesuai dengan format nomor telepon
+            'no_telp' => 'required|string|max:15', 
             'alamat' => 'required|string', 
             'sumber' => 'required|string',
             'keterangan' => 'required|string',
@@ -76,22 +76,22 @@ class ClientController extends Controller
             'status_id' => $request->status_id,
             'user_name' => Auth::user()->id
         ]);
-        History::create([
-            'action' => 'create',
-            'model_type' => Client::class,
-            'model_name' => $client->name, // Nama client yang baru dibuat
-            'user_name' => Auth::user()->name, // Nama user yang membuat
-            'changes' => json_encode([
-                'name' => $client->name,
-                'created_at' => $client->created_at->isoFormat('D MMMM Y, HH:mm')  // Tanggal dibuat
-            ]), // Menyimpan perubahan dengan nama dan tanggal dalam format JSON
-        ]);
+        // History::create([
+        //     'action' => 'create',
+        //     'model_type' => Client::class,
+        //     'model_name' => $client->name, // Nama client yang baru dibuat
+        //     'user_name' => Auth::user()->name, // Nama user yang membuat
+        //     'changes' => json_encode([
+        //         'name' => $client->name,
+        //         'created_at' => $client->created_at->isoFormat('D MMMM Y, HH:mm')  // Tanggal dibuat
+        //     ]), // Menyimpan perubahan dengan nama dan tanggal dalam format JSON
+        // ]);
 
         
         return response()->json([
             'success' => true,
             'message' => 'Client Berhasil Di Simpan',
-            'url' => route('clients.index')
+            'url' =>  route('clients.index')
         ], 201);
     }
 
@@ -138,20 +138,20 @@ class ClientController extends Controller
     
         $request->validate([
             'name' => 'required|string|max:255',
-            'tanggal' => 'required|date|date_format:Y-m-d', // Validasi tanggal
+            'tanggal' => 'required|date|date_format:Y-m-d', 
             'jenis_id' => ['required', Rule::in($allowedJenis)],
             'kebutuhan' => 'required|string',
-            'no_telp' => 'required|string|max:15', // Pastikan panjang maksimal sesuai dengan format nomor telepon
+            'no_telp' => 'required|string|max:15', 
             'alamat' => 'required|string',
             'sumber' => 'required|string',
             'keterangan' => 'required|string',
             'status_id' => ['required', Rule::in($allowedStatus)],
         ]);
     
-        // Menyimpan data lama sebelum update
-        $oldData = $client->getOriginal();
+        // // Menyimpan data lama sebelum update
+        // $oldData = $client->getOriginal();
     
-        // Update data client
+     
         $client->update([
             'name' => $request->name,
             'jenis_id' => $request->jenis_id,
@@ -165,35 +165,35 @@ class ClientController extends Controller
             'user_name' => Auth::user()->id
         ]);
     
-        // Menyimpan perubahan hanya jika ada perubahan
-        $changes = [];
-        $newData = $client->getAttributes();
+        // // Menyimpan perubahan hanya jika ada perubahan
+        // $changes = [];
+        // $newData = $client->getAttributes();
     
-        foreach ($newData as $key => $value) {
-            if ($oldData[$key] != $value) {
-                $changes[$key] = [
-                    'old' => $oldData[$key],
-                    'new' => $value
-                ];
-            }
-        }
+        // foreach ($newData as $key => $value) {
+        //     if ($oldData[$key] != $value) {
+        //         $changes[$key] = [
+        //             'old' => $oldData[$key],
+        //             'new' => $value
+        //         ];
+        //     }
+        // }
     
-        if (!empty($changes)) {
-            // Mencatat histori perubahan
-            History::create([
-                'action' => 'update',
-                'model_type' => Client::class,
-                'model_name' => $client->name, // Menyimpan nama client
-                'user_name' => Auth::user()->name, // Menggunakan nama pengguna yang sedang login
-                'changes' => json_encode($changes) // Menyimpan perubahan yang terjadi dalam format JSON
-            ]);
-        }
+        // if (!empty($changes)) {
+        //     // Mencatat histori perubahan
+        //     History::create([
+        //         'action' => 'update',
+        //         'model_type' => Client::class,
+        //         'model_name' => $client->name, 
+        //         'user_name' => Auth::user()->name,
+        //         'changes' => json_encode($changes) 
+        //     ]);
+        // }
     
         return response()->json([
             'success' => true,
             'message' => 'Client Berhasil Di Simpan',
             'url' => route('clients.index')
-        ], 201);
+        ], 200);
     }
     
     /**
@@ -205,16 +205,16 @@ class ClientController extends Controller
     public function destroy($id)
     {
         $client = Client::findOrFail($id);
-        History::create([
-            'action' => 'delete',
-            'model_type' => Client::class,
-            'model_name' => $client->name, // Menggunakan nama client
-            'user_name' => Auth::user()->name, // Menggunakan nama pengguna yang sedang masuk
-            'changes' => json_encode([
-                'id' => $client->id,
-                'name' => $client->name// Tanggal dibuat
-            ]), // Menyimpan data client yang akan dihapus
-        ]);
+        // History::create([
+        //     'action' => 'delete',
+        //     'model_type' => Client::class,
+        //     'model_name' => $client->name, 
+        //     'user_name' => Auth::user()->name, 
+        //     'changes' => json_encode([
+        //         'id' => $client->id,
+        //         'name' => $client->name
+        //     ]), 
+        // ]);
         $client->delete();
 
         return redirect()->route('clients.index')
